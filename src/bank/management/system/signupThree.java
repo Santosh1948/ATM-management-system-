@@ -146,7 +146,7 @@ public class signupThree extends JFrame implements ActionListener {
         cancel.setForeground(Color.WHITE);
         cancel.setFont(new Font("Railway", Font.BOLD, 14));
         cancel.setBounds(420,720,100,30);
-        submit.addActionListener(this);
+        cancel.addActionListener(this);
         add(cancel);
 
         getContentPane().setBackground(Color.white);
@@ -169,7 +169,7 @@ public class signupThree extends JFrame implements ActionListener {
            }
 
             Random random = new Random();
-           String cardnumber = " "+ Math.abs((random.nextLong() % 90000000L)) + 504093600000000L;
+           String cardnumber = " "+ Math.abs((random.nextLong() % 90000000L)+ 504093600000000L);
            String pinnumber = " " +Math.abs((random.nextLong() % 9000L )+ 1000L);
            String facility = "";
            if (c1.isSelected()){
@@ -191,8 +191,12 @@ public class signupThree extends JFrame implements ActionListener {
                    JOptionPane.showMessageDialog(null, "Account Type is Required");
                }else{
                    Conn conn = new Conn();
-                   String query1 = "insert into signupthree values(' " +formno+ " ', ' " +accountType+ " ', ' " +cardnumber+ " ', ' " +pinnumber+ " ',' " +facility+ " ')";
+                   String query1 = "insert into sighupthree values(' " +formno+ " ', ' " +accountType+ " ', ' " +cardnumber+ " ', ' " +pinnumber+ " ',' " +facility+ " ')";
+                   String query2 = "insert into login values(' " +formno+ " ', ' " +cardnumber+ " ', ' " +pinnumber+ " ')";
                    conn.s.executeUpdate(query1);
+                   conn.s.executeUpdate(query2);
+
+                   JOptionPane.showMessageDialog(null,"Card Number" + cardnumber + "\n pin: "+ pinnumber);
                }
            }catch (Exception e){
                System.out.println(e);
