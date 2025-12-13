@@ -1,5 +1,9 @@
 package bank.management.system;
 
+//import com.mysql.cj.protocol.Resultset;
+
+import java.sql.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -92,8 +96,24 @@ public class Login extends JFrame implements ActionListener {
             pinTextField.setText("");
         }
         else if (ae.getSource() == login) {
+            Conn conn = new Conn();
+            String cardnumber = cardTextField.getText().trim();
+            String pin = new String(pinTextField.getPassword()).trim();
 
 
+            String query = "select * from login where cardnumber = '"+cardnumber+"' and pin = '"+pin+"'";
+            try {
+                ResultSet rs =conn.s.executeQuery(query);
+                if (rs.next()){
+                    setVisible(false);
+                    new Transactions(pin).setVisible(true);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null ,"Incorrect Card Number or Pin");
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
         else if (ae.getSource() == signup) {
             setVisible(false);
