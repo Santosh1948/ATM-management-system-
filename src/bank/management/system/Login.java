@@ -97,7 +97,7 @@ public class Login extends JFrame implements ActionListener {
         }
         else if (ae.getSource() == login) {
             Conn conn = new Conn();
-            String cardnumber = cardTextField.getText().trim();
+            String cardnumber = cardTextField.getText().trim().replaceAll("\\s+", "");
             String pin = new String(pinTextField.getPassword()).trim();
 
 
@@ -112,7 +112,8 @@ public class Login extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(null ,"Incorrect Card Number or Pin");
                 }
             }catch (Exception e){
-                e.printStackTrace();
+//                e.printStackTrace();
+                System.out.println(e);
             }
         }
         else if (ae.getSource() == signup) {

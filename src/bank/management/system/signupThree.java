@@ -169,9 +169,16 @@ public class signupThree extends JFrame implements ActionListener {
            }
 
             Random random = new Random();
-           String cardnumber = " "+ Math.abs((random.nextLong() % 90000000L)+ 504093600000000L);
-           String pinnumber = " " +Math.abs((random.nextLong() % 9000L )+ 1000L);
-           String facility = "";
+
+            String cardnumber = String.valueOf(
+                    Math.abs((random.nextLong() % 90000000L) + 504093600000000L)
+            );
+
+            String pinnumber = String.valueOf(
+                    Math.abs((random.nextLong() % 9000L) + 1000L)
+            );
+
+            String facility = "";
            if (c1.isSelected()){
                facility = facility + "ATM Card";
            } else if (c2.isSelected()) {
@@ -192,7 +199,7 @@ public class signupThree extends JFrame implements ActionListener {
                }else{
                    Conn conn = new Conn();
                    String query1 = "insert into sighupthree values(' " +formno+ " ', ' " +accountType+ " ', ' " +cardnumber+ " ', ' " +pinnumber+ " ',' " +facility+ " ')";
-                   String query2 = "insert into login values(' " +formno+ " ', ' " +cardnumber+ " ', ' " +pinnumber+ " ')";
+                   String query2 = "insert into login values(' " +formno.trim()+ " ', ' " +cardnumber.trim()+ " ', ' " +pinnumber.trim()+ " ')";
                    conn.s.executeUpdate(query1);
                    conn.s.executeUpdate(query2);
 
