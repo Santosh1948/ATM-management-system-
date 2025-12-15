@@ -5,11 +5,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Transactions extends JFrame implements ActionListener {
+public class FastCash extends JFrame implements ActionListener {
 
     JButton deposit, withdrawl,fastcash,ministatement ,pinchange ,balanceenquiry,exit;
     String pinnumber;
-    Transactions(String pinnumber){
+    FastCash(String pinnumber){
         this.pinnumber = pinnumber;
         setLayout(null);
 
@@ -19,8 +19,8 @@ public class Transactions extends JFrame implements ActionListener {
         JLabel image = new JLabel(i3);
         image.setBounds(0,0,900,900);
         add(image);
-        
-        JLabel text = new JLabel("Please select your Transaction");
+
+        JLabel text = new JLabel("SELECT WITHDRAWAL AMOUNT");
         text.setBounds(210,300,700,35);
         text.setForeground(Color.white);
         text.setFont(new Font("System",Font.BOLD,16));
@@ -69,7 +69,7 @@ public class Transactions extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
 
-        new Transactions("");
+        new FastCash("");
     }
 
     @Override

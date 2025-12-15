@@ -98,7 +98,7 @@ public class Login extends JFrame implements ActionListener {
         else if (ae.getSource() == login) {
             Conn conn = new Conn();
             String cardnumber = cardTextField.getText().trim().replaceAll("\\s+", "");
-            String pin = new String(pinTextField.getPassword()).trim();
+            String pin = new String(pinTextField.getPassword()).trim().replaceAll("\\s+", "");
 
 
             String query = "select * from login where cardnumber = '"+cardnumber+"' and pin = '"+pin+"'";

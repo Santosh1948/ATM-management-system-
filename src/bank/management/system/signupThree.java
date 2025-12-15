@@ -204,12 +204,15 @@ public class signupThree extends JFrame implements ActionListener {
                    conn.s.executeUpdate(query2);
 
                    JOptionPane.showMessageDialog(null,"Card Number" + cardnumber + "\n pin: "+ pinnumber);
+                   setVisible(false);
+                   new Deposit(pinnumber).setVisible(false);
                }
            }catch (Exception e){
                System.out.println(e);
            }
         }else if(ae.getSource() == cancel){
-
+            setVisible(false);
+            new Login().setVisible(true);
         }
     }
 

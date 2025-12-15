@@ -8,12 +8,12 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 
-public class Deposit extends JFrame implements ActionListener {
+public class Withdrawl extends JFrame implements ActionListener {
     JTextField amount;
-    JButton deposit,back;
+    JButton withdrawl,back;
     String pinnumer;
 
-    Deposit(String pinnumber){
+    Withdrawl(String pinnumber){
 
         this.pinnumer = pinnumber;
         setLayout(null);
@@ -25,7 +25,7 @@ public class Deposit extends JFrame implements ActionListener {
         image.setBounds(0,0,900,900);
         add(image);
 
-        JLabel text = new JLabel("Enter the amount you want to deposit: ");
+        JLabel text = new JLabel("Enter the amount you want to withdraw: ");
         text.setForeground(Color.WHITE);
         text.setFont(new Font("System",Font.BOLD,16));
         text.setBounds(170,300,400,20);
@@ -36,10 +36,10 @@ public class Deposit extends JFrame implements ActionListener {
         amount.setBounds(170,350,320,25);
         image.add(amount);
 
-        deposit = new JButton("Deposit");
-        deposit.setBounds(355,485,150,30);
-        deposit.addActionListener(this);
-        image.add(deposit);
+        withdrawl = new JButton("Withdraw");
+        withdrawl.setBounds(355,485,150,30);
+        withdrawl.addActionListener(this);
+        image.add(withdrawl);
 
         back = new JButton("Back");
         back.setBounds(355,520,150,30);
@@ -52,27 +52,27 @@ public class Deposit extends JFrame implements ActionListener {
         setVisible(true);
     }
     public void actionPerformed(ActionEvent ae){
-        if (ae.getSource() == deposit){
+        if (ae.getSource() == withdrawl){
             String number = amount.getText().trim();
-            String type = "Deposit";
+            String type = "Withdraw";
 //            Date date = new Date();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String date = sdf.format(new Date());
             if(number.equals("")){
-                JOptionPane.showMessageDialog(null, "Please enter the amount you want to deposit");
+                JOptionPane.showMessageDialog(null, "Please enter the amount you want to withdraw");
                 return;
             }else {
-               try {
-                   Conn conn = new Conn();
-                   String query = "insert into bank values( '"+pinnumer+"' , '"+date+"','"+type+"','"+number+ "')";
-                   conn.s.executeUpdate(query);
+                try {
+                    Conn conn = new Conn();
+                    String query = "insert into bank values( '"+pinnumer+"' , '"+date+"','"+type+"','"+number+ "')";
+                    conn.s.executeUpdate(query);
 
-                   JOptionPane.showMessageDialog(null, "Rs "+number+"Deposit Successfully");
-                   setVisible(false);
-                   new Transactions(pinnumer).setVisible(true);
-               }catch (Exception e){
-                   System.out.println(e);
-               }
+                    JOptionPane.showMessageDialog(null, "Rs "+number+"Withdraw Successfully");
+                    setVisible(false);
+                    new Transactions(pinnumer).setVisible(true);
+                }catch (Exception e){
+                    System.out.println(e);
+                }
             }
         } else if (ae.getSource() == back) {
             setVisible(false);
@@ -82,6 +82,6 @@ public class Deposit extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
 
-        new Deposit("");
+        new Withdrawl("");
     }
 }
