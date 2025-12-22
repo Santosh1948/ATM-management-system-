@@ -170,40 +170,33 @@ public class signupThree extends JFrame implements ActionListener {
 
             Random random = new Random();
 
-            String cardnumber = String.valueOf(
-                    Math.abs((random.nextLong() % 90000000L) + 504093600000000L)
-            );
+            String cardnumber = String.valueOf(Math.abs((random.nextLong() % 90000000L) + 504093600000000L));
 
-            String pinnumber = String.valueOf(
-                    Math.abs((random.nextLong() % 9000L) + 1000L)
-            );
+            String pinnumber = String.valueOf(1000 + random.nextInt(9000));
+
 
             String facility = "";
-           if (c1.isSelected()){
-               facility = facility + "ATM Card";
-           } else if (c2.isSelected()) {
-               facility = facility + "Internet Banking";
-           }else if (c3.isSelected()) {
-               facility = facility + "Mobile Banking";
-           }else if (c4.isSelected()) {
-               facility = facility + "Email & SMS Alerts";
-           }else if (c5.isSelected()) {
-               facility = facility + "Cheque Book";
-           }else if (c6.isSelected()) {
-               facility = facility + "E-Statement";
-           }
 
-           try {
+            if (c1.isSelected()) facility += "ATM Card ";
+            if (c2.isSelected()) facility += "Internet Banking ";
+            if (c3.isSelected()) facility += "Mobile Banking ";
+            if (c4.isSelected()) facility += "Email & SMS Alerts ";
+            if (c5.isSelected()) facility += "Cheque Book ";
+            if (c6.isSelected()) facility += "E-Statement ";
+
+
+            try {
                if (accountType.equals("")){
                    JOptionPane.showMessageDialog(null, "Account Type is Required");
                }else{
                    Conn conn = new Conn();
-                   String query1 = "insert into sighupthree values(' " +formno+ " ', ' " +accountType+ " ', ' " +cardnumber+ " ', ' " +pinnumber+ " ',' " +facility+ " ')";
-                   String query2 = "insert into login values(' " +formno.trim()+ " ', ' " +cardnumber.trim()+ " ', ' " +pinnumber.trim()+ " ')";
+                   String query1 = "insert into sighupthree values('" + formno + "','" + accountType + "','" + cardnumber + "','" + pinnumber + "','" + facility + "')";
+                   String query2 = "insert into login values('" + formno + "','" + cardnumber + "','" + pinnumber + "')";
+
                    conn.s.executeUpdate(query1);
                    conn.s.executeUpdate(query2);
 
-                   JOptionPane.showMessageDialog(null,"Card Number" + cardnumber + "\n pin: "+ pinnumber);
+                   JOptionPane.showMessageDialog(null,"Card Number: " + cardnumber + "\n pin: "+ pinnumber);
                    setVisible(false);
                    new Deposit(pinnumber).setVisible(false);
                }

@@ -1,5 +1,6 @@
 package bank.management.system;
 
+import java.text.SimpleDateFormat;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -96,9 +97,13 @@ public class FastCash extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(null, "Insufficient Balance");
                     return;
                 }
-                Date date = new Date();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String date = sdf.format(new Date());
+
                 String query = "INSERT INTO bank(pin, date, type, amount) VALUES('"
-                        + pinnumber + "','" + date + "','Withdraw','" + amount + "')";                c.s.executeUpdate(query);
+                        + pinnumber + "','" + date + "','Withdraw','" + amount + "')";
+                c.s.executeUpdate(query);
+
                 JOptionPane.showMessageDialog(null, "Rs "+amount+ "Debited Successfully");
                 setVisible(false);
                 new Transactions(pinnumber).setVisible(true);
