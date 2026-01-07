@@ -58,6 +58,6 @@ public class BalanceEnquiry extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         setVisible(false);
-        new Transactions("pinnumber").setVisible(true);
+        new Transactions(pinnumber).setVisible(true);
     }
 }
